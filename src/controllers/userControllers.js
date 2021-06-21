@@ -9,7 +9,13 @@ const addForms=async(req,res,next)=>{
                 success:false,
                 error:'Email already registered'
             })
-        }else{
+        }else if(moment().diff(dateOfBirth, 'years',false)<18){
+            res.json({
+                success:false,
+                error:'Age must be greater than 18'
+            })
+        }
+        else{
             const user=await User.create({name,email,number,dateOfBirth})
             if(user){
                 res.json({
