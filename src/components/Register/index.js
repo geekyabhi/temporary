@@ -4,6 +4,7 @@ import { Form, Button } from 'react-bootstrap'
 import Message from '../Message/index'
 import FormContainer from '../FormContainer/index'
 import axios from 'axios'
+import style from './style.module.css'
 
 const Register = () => {
 
@@ -59,10 +60,10 @@ const Register = () => {
     return (
         <>
             <FormContainer>
-            {message && <Message variant='success'>{message}</Message>}
-            {error && <Message variant='danger'>{error}</Message>}
-            {loading && <div>Loading</div>}
-            <Form onSubmit={submitHandler}>
+            <Form onSubmit={submitHandler} className={style.wrapper}>    
+                {message && <Message variant='success'>{message}</Message>}
+                {error && <Message variant='danger'>{error}</Message>}
+                {loading && <div>Loading</div>}
                 <Form.Group controlId='name'>
                 <Form.Label>Name</Form.Label>
                 <Form.Control
