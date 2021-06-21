@@ -39,7 +39,7 @@ const Register = () => {
         }
         try{
             setloading(false)
-            const {data}=await axios.post('http://localhost:5000/api/users',obj,config)
+            const {data}=await axios.post('https://temp-strike.herokuapp.com/api/users',obj,config)
             if(!data){
                 setloading(true)
             }else{

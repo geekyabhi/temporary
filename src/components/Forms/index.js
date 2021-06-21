@@ -9,7 +9,7 @@ const Forms = () => {
     useEffect(() => {
         const fetchForms=async()=>{
             try{
-                const {data}=await axios.get('http://localhost:5000/api/users')
+                const {data}=await axios.get('https://temp-strike.herokuapp.com/api/users')
                 if(data.success){
                     setforms(data.data)
                 }
