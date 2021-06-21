@@ -5,6 +5,7 @@ import Message from '../Message/index'
 import FormContainer from '../FormContainer/index'
 import axios from 'axios'
 import style from './style.module.css'
+import moment from 'moment'
 
 const Register = () => {
 
@@ -32,28 +33,32 @@ const Register = () => {
             email,number,
             dateOfBirth
         }
-
-        const config = {
-            headers: {
-            'Content-Type': 'application/json',
-            },
-        }
-        try{
-            setloading(false)
-            const {data}=await axios.post('https://temp-strike.herokuapp.com/api/users',obj,config)
-            if(!data){
-                setloading(true)
-            }else{
+        let age= moment().diff(dateOfBirth, 'years',false)
+        if(age<18){
+            seterror("Age must be above 18")
+        }else{
+            const config = {
+                headers: {
+                'Content-Type': 'application/json',
+                },
+            }
+            try{
                 setloading(false)
+                const {data}=await axios.post('https://temp-strike.herokuapp.com/api/users',obj,config)
+                if(!data){
+                    setloading(true)
+                }else{
+                    setloading(false)
+                }
+                if(data.success){
+                    history.push('/forms')
+                }else{
+                    seterror(data.error)
+                }
+            }catch(e){
+                console.log(e)
+                seterror('Server Error')
             }
-            if(data.success){
-                history.push('/forms')
-            }else{
-                seterror(data.error)
-            }
-        }catch(e){
-            console.log(e)
-            seterror('Server Error')
         }
     }
 
