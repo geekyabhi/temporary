@@ -1,0 +1,11 @@
+.wrapper{
+    margin: 40px 30px;
+    transition: all .2s;
+}
+.wrapper:hover{
+    box-shadow: 5px 5px 40px #000;
+}
+.name{
+    font-size: 30px;
+    padding-bottom: 20px;
+}
