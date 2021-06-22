@@ -1,5 +1,15 @@
 const User=require('../models/user')
 const moment=require('moment')
+
+function phonenumber(inputtxt)
+{
+    var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+    if((inputtxt.match(phoneno)))
+        return true
+    else
+        return false
+}
+
 const addForms=async(req,res,next)=>{
     try{
         const {name,email,number,dateOfBirth}=req.body
@@ -13,6 +23,12 @@ const addForms=async(req,res,next)=>{
             res.json({
                 success:false,
                 error:'Age must be greater than 18'
+            })
+        }
+        else if(!phonenumber(number)){
+            res.json({
+                success:false,
+                error:'Enter a valid number'
             })
         }
         else{
