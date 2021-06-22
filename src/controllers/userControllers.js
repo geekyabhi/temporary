@@ -1,5 +1,5 @@
 const User=require('../models/user')
-
+const moment=require('moment')
 const addForms=async(req,res,next)=>{
     try{
         const {name,email,number,dateOfBirth}=req.body
@@ -36,6 +36,7 @@ const addForms=async(req,res,next)=>{
                 error:e.message.split(":")[2]
             })   
         }else{    
+            console.log(e)
             res.status(500).json({
                 success:false,
                 error:'Server Error'
