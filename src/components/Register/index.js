@@ -23,6 +23,18 @@ const Register = () => {
             setmessage(null)
         }, 3000);
     }
+    function phonenumber(inputtxt)
+    {
+    var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    if((inputtxt.match(phoneno)))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    }
 
     const history=useHistory()
 
@@ -34,7 +46,12 @@ const Register = () => {
             dateOfBirth
         }
         let age= moment().diff(dateOfBirth, 'years',false)
-        if(age<18){
+        
+        if(!phonenumber(number))
+        {
+            seterror('Enter valid number')
+        }
+        else if(age<18){
             seterror("Age must be above 18")
         }else{
             const config = {
