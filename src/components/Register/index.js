@@ -75,6 +75,7 @@ const Register = () => {
                     type='name'
                     placeholder='Enter name'
                     value={name}
+                    required
                     onChange={(e) => setname(e.target.value)}
                 ></Form.Control>
                 </Form.Group>
@@ -83,6 +84,7 @@ const Register = () => {
                 <Form.Label>Email Address</Form.Label>
                 <Form.Control
                     type='email'
+                    required
                     placeholder='Enter email'
                     value={email}
                     onChange={(e) => setemail(e.target.value)}
@@ -95,6 +97,7 @@ const Register = () => {
                     pattern="[0-9]*"
                     value={number}
                     maxLength="10"
+                    required
                     placeholder='Enter Mobile Number'
                     onChange={(e) => setnumber(e.target.value)}
                 ></Form.Control>
@@ -104,6 +107,7 @@ const Register = () => {
                 <Form.Label>Date Of Birth</Form.Label>
                 <Form.Control
                     type='date'
+                    required
                     placeholder='Confirm password'
                     value={dateOfBirth}
                     onChange={(e) => setdateOfBirth(e.target.value)}
