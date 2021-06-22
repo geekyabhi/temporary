@@ -1,5 +1,6 @@
 const User=require('../models/user')
 const moment=require('moment')
+const sendEmail = require('../email/email')
 
 function phonenumber(inputtxt)
 {
@@ -34,6 +35,7 @@ const addForms=async(req,res,next)=>{
         else{
             const user=await User.create({name,email,number,dateOfBirth})
             if(user){
+                sendEmail(email,'Your form has been successfully submitted , thankyou !',name,'Form Submitted')
                 res.json({
                     success:true,
                     data:user
